@@ -1,6 +1,6 @@
 import React, { use } from 'react';
 import Link from 'next/link';
-import { ShieldCheck, CheckCircle2, ArrowLeft } from 'lucide-react';
+import { ShieldCheck, CheckCircle, ArrowLeft } from 'lucide-react';
 import { Order } from '@/types';
 
 async function getOrderDetails(id: string): Promise<Order | null> {
@@ -83,7 +83,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${
                   step.done ? 'bg-[var(--foreground)] text-[var(--card)]' : 'bg-[var(--accent-light)] text-[var(--muted)]'
                 }`}>
-                  {step.done ? <CheckCircle2 className="w-3.5 h-3.5" /> : idx + 1}
+                  {step.done ? <CheckCircle className="w-3.5 h-3.5" /> : idx + 1}
                 </div>
                 <span className={`text-xs font-bold ${step.done ? 'text-[var(--foreground)]' : 'text-[var(--muted)]'}`}>
                   {step.title}

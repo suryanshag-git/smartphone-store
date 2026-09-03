@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Info, CheckCircle2, TrendingUp } from 'lucide-react';
+import { Info, CheckCircle, TrendingUp } from 'lucide-react';
 
 export const MFTrustBanner: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(false);
