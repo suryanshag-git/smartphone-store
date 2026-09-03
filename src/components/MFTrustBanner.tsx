@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ShieldCheck, Info, CheckCircle2, TrendingUp, HeartHandshake } from 'lucide-react';
+import { Info, CheckCircle2, TrendingUp } from 'lucide-react';
 
 export const MFTrustBanner: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -12,53 +12,32 @@ export const MFTrustBanner: React.FC = () => {
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
         onClick={() => setShowTooltip(!showTooltip)}
-        className="cursor-pointer group flex items-center justify-between p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200/80 hover:border-emerald-400 transition-all duration-200"
+        className="cursor-pointer flex items-center justify-between p-3.5 rounded-xl border border-[var(--border)] bg-[var(--card)] hover:border-[var(--accent)] transition-all duration-200"
       >
-        <div className="flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-white border border-emerald-200 flex items-center justify-center text-emerald-600 shadow-sm shrink-0">
-            <HeartHandshake className="w-5 h-5" />
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-[var(--accent-light)] flex items-center justify-center text-[var(--foreground)] shrink-0">
+            <TrendingUp className="w-4 h-4" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-slate-900 tracking-wide">
-                Your mutual funds stay safely yours
-              </span>
-              <span className="bg-emerald-100 text-emerald-800 font-semibold text-[10px] px-2 py-0.5 rounded-md">
-                Zero Portfolio Selling
-              </span>
-            </div>
-            <p className="text-[11px] text-slate-600 mt-0.5">
-              Keep earning monthly SIP returns on your portfolio while paying easy installments
+            <span className="text-xs font-bold text-[var(--foreground)] tracking-wide">
+              Your mutual funds stay safely pledged in your folio
+            </span>
+            <p className="text-[11px] text-[var(--muted)] mt-0.5">
+              Zero portfolio selling • Keep 100% of your compounding SIP returns
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-1 text-xs text-emerald-700 font-bold shrink-0">
-          <span>How it works</span>
-          <Info className="w-3.5 h-3.5 text-emerald-600" />
-        </div>
+        <Info className="w-3.5 h-3.5 text-[var(--muted)] shrink-0" />
       </div>
 
-      {/* Human Friendly Popover */}
       {showTooltip && (
-        <div className="absolute left-0 right-0 top-full mt-2 z-40 p-5 rounded-2xl bg-white border border-emerald-200 shadow-xl space-y-3 animate-in fade-in duration-200">
-          <h4 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-            <TrendingUp className="w-4 h-4 text-emerald-600" />
-            <span>Why smart buyers prefer mutual fund EMI</span>
-          </h4>
-          <ul className="space-y-2 text-xs text-slate-600">
-            <li className="flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-              <span><strong>No Need to Sell:</strong> Your funds stay in your folio. You avoid exit fees and capital gains tax.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-              <span><strong>Keep Compounding:</strong> Your mutual funds keep growing. Over 12-36 months, your market returns can easily offset your EMI.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-              <span><strong>Simple OTP Approval:</strong> Takes less than a minute with your registered mobile number.</span>
-            </li>
+        <div className="absolute left-0 right-0 top-full mt-2 z-40 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-lg space-y-2 text-xs text-[var(--muted)] animate-in fade-in duration-200">
+          <p className="font-bold text-[var(--foreground)]">How Slate Mutual Fund Credit Works:</p>
+          <ul className="space-y-1.5 list-disc list-inside text-[11px]">
+            <li><strong>Zero Exit Loads & Taxes:</strong> You never liquidate or sell your funds.</li>
+            <li><strong>Market Returns Continue:</strong> Your SIP portfolio keeps growing while you pay monthly.</li>
+            <li><strong>Instant Digital Verification:</strong> Automated folio check via OTP.</li>
           </ul>
         </div>
       )}
