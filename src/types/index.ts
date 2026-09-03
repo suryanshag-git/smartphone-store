@@ -64,6 +64,8 @@ export interface Order {
   downPayment: number;
   emiMonthlyAmount: number;
   emiTenure: number;
+  variantColor: string;
+  variantStorage: string;
   status: string;
   mfPledgeId: string;
   mfPledgedUnits: number;
