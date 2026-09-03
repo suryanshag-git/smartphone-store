@@ -1,16 +1,41 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('q') || '';
     const brands = searchParams.get('brand')?.split(',').filter(Boolean) || [];
-    const minPrice = searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice')!) : undefined;
     const maxPrice = searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice')!) : undefined;
     const zeroInterest = searchParams.get('zeroInterest') === 'true';
     const sort = searchParams.get('sort') || 'featured';
 
+    if (isSupabaseConfigured()) {
+      // Query Supabase directly
+      let query = supabase.from('Product').select('*, variants:ProductVariant(*), emiPlans:EMIPlan(*)');
+
+      if (search) {
+        query = query.ilike('name', `%${search}%`);
+      }
+      if (brands.length > 0) {
+        query = query.in('brand', brands);
+      }
+      if (maxPrice !== undefined) {
+        query = query.lte('basePrice', maxPrice);
+      }
+
+      const { data, error } = await query;
+      if (error) throw error;
+
+      return NextResponse.json({
+        success: true,
+        count: data?.length || 0,
+        products: data || []
+      });
+    }
+
+    // Fallback DB query
     const whereClause: any = {};
 
     if (search) {
@@ -25,17 +50,13 @@ export async function GET(request: NextRequest) {
       whereClause.brand = { in: brands };
     }
 
-    if (minPrice !== undefined || maxPrice !== undefined) {
-      whereClause.basePrice = {};
-      if (minPrice !== undefined) whereClause.basePrice.gte = minPrice;
-      if (maxPrice !== undefined) whereClause.basePrice.lte = maxPrice;
+    if (maxPrice !== undefined) {
+      whereClause.basePrice = { lte: maxPrice };
     }
 
     if (zeroInterest) {
       whereClause.emiPlans = {
-        some: {
-          isZeroPercent: true
-        }
+        some: { isZeroPercent: true }
       };
     }
 

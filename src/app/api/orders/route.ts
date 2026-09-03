@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,9 +29,45 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const orderNumber = `MF-ORD-${Math.floor(100000 + Math.random() * 900000)}`;
+    const orderNumber = `SLATE-ORD-${Math.floor(100000 + Math.random() * 900000)}`;
     const mfPledgeId = `MFP-${Math.floor(100000 + Math.random() * 900000)}`;
     const mfPledgedUnits = Math.round(totalAmount / 820);
+    const shippingStr = typeof shippingAddress === 'string' ? shippingAddress : JSON.stringify(shippingAddress);
+
+    if (isSupabaseConfigured()) {
+      const { data, error } = await supabase
+        .from('Order')
+        .insert([{
+          orderNumber,
+          userType,
+          userEmail,
+          userName,
+          userPhone,
+          shippingAddress: shippingStr,
+          totalAmount: Number(totalAmount),
+          downPayment: Number(downPayment),
+          emiMonthlyAmount: Number(emiMonthlyAmount),
+          emiTenure: Number(emiTenure),
+          emiPlanId,
+          productId,
+          variantColor,
+          variantStorage,
+          status: 'MF_PLEDGED',
+          mfPledgeId,
+          mfPledgedUnits,
+          mfFundName
+        }])
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      return NextResponse.json({
+        success: true,
+        message: 'Order placed successfully via Supabase',
+        order: data
+      });
+    }
 
     const newOrder = await prisma.order.create({
       data: {
@@ -39,7 +76,7 @@ export async function POST(request: NextRequest) {
         userEmail,
         userName,
         userPhone,
-        shippingAddress: typeof shippingAddress === 'string' ? shippingAddress : JSON.stringify(shippingAddress),
+        shippingAddress: shippingStr,
         totalAmount: Number(totalAmount),
         downPayment: Number(downPayment),
         emiMonthlyAmount: Number(emiMonthlyAmount),
@@ -75,6 +112,21 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
+    if (isSupabaseConfigured()) {
+      const { data, error } = await supabase
+        .from('Order')
+        .select('*, product:Product(*), emiPlan:EMIPlan(*)')
+        .order('createdAt', { ascending: false })
+        .limit(10);
+
+      if (error) throw error;
+
+      return NextResponse.json({
+        success: true,
+        orders: data || []
+      });
+    }
+
     const orders = await prisma.order.findMany({
       take: 10,
       orderBy: { createdAt: 'desc' },

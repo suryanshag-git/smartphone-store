@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 export async function GET(
   request: NextRequest,
@@ -7,6 +8,26 @@ export async function GET(
 ) {
   try {
     const { slug } = await params;
+
+    if (isSupabaseConfigured()) {
+      const { data, error } = await supabase
+        .from('Product')
+        .select('*, variants:ProductVariant(*), emiPlans:EMIPlan(*)')
+        .eq('slug', slug)
+        .single();
+
+      if (error || !data) {
+        return NextResponse.json(
+          { success: false, error: 'Product not found' },
+          { status: 404 }
+        );
+      }
+
+      return NextResponse.json({
+        success: true,
+        product: data
+      });
+    }
 
     const product = await prisma.product.findUnique({
       where: { slug },
