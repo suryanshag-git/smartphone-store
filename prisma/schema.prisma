@@ -1,0 +1,125 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  name        String
+  brand       String
+  description String
+  rating      Float    @default(4.8)
+  reviewCount Int      @default(120)
+  basePrice   Int
+  mrp         Int
+  category    String   @default("Smartphone")
+  featured    Boolean  @default(false)
+  specs       String   // JSON stringified key features
+  badge       String?  // e.g. "Best Seller", "Flagship Launch"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  variants    ProductVariant[]
+  emiPlans    EMIPlan[]
+  orders      Order[]
+}
+
+model ProductVariant {
+  id          String   @id @default(uuid())
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  color       String   // e.g. "Natural Titanium"
+  colorHex    String   // e.g. "#8A8682"
+  colorSlug   String   // e.g. "natural-titanium"
+  storage     String   // e.g. "256GB"
+  storageSlug  String   // e.g. "256gb"
+  price       Int      // actual selling price for this variant
+  mrp         Int      // MRP for this variant
+  image       String   // primary high-res product image
+  gallery     String   // JSON stringified array of gallery image URLs
+  inStock     Boolean  @default(true)
+  stockCount  Int      @default(15)
+
+  cartItems   CartItem[]
+  orderItems  OrderItem[]
+
+  @@unique([productId, colorSlug, storageSlug])
+}
+
+model EMIPlan {
+  id                 String   @id @default(uuid())
+  productId          String?
+  product            Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
+  tenureMonths       Int      // e.g. 3, 6, 12, 24, 36, 48, 60
+  annualInterestRate Float    // e.g. 0.0 for 0% No Cost, 10.5 for 10.5%
+  isZeroPercent      Boolean  @default(false)
+  cashbackAmount     Int      @default(0) // e.g. 7500
+  cashbackTag        String?  // e.g. "Additional Cashback of ₹7,500"
+  mfPledgePercentage Float    @default(1.0)
+  processingFee      Int      @default(0)
+  popularTag         String?  // e.g. "Most Popular"
+
+  orders             Order[]
+}
+
+model MutualFundPortfolio {
+  id                  String   @id @default(uuid())
+  userPhone           String   @unique
+  userName            String
+  panNumber           String
+  totalPortfolioValue Int
+  eligiblePledgeLimit Int
+  holdings            String   // JSON string of holdings
+}
+
+model Order {
+  id               String   @id @default(uuid())
+  orderNumber      String   @unique
+  userType         String   @default("guest")
+  userEmail        String
+  userName         String
+  userPhone        String
+  shippingAddress  String   // JSON stringified address object
+  totalAmount      Int
+  downPayment      Int      @default(0)
+  emiMonthlyAmount Int
+  emiTenure        Int
+  emiPlanId        String
+  emiPlan          EMIPlan  @relation(fields: [emiPlanId], references: [id])
+  productId        String
+  product          Product  @relation(fields: [productId], references: [id])
+  variantColor     String
+  variantStorage   String
+  status           String   @default("MF_PLEDGED")
+  mfPledgeId       String   @default("MFP-984210")
+  mfPledgedUnits   Int      @default(142)
+  mfFundName       String   @default("HDFC Top 100 Fund - Growth")
+  createdAt        DateTime @default(now())
+
+  items            OrderItem[]
+}
+
+model OrderItem {
+  id         String         @id @default(uuid())
+  orderId    String
+  order      Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  variantId  String
+  variant    ProductVariant @relation(fields: [variantId], references: [id])
+  quantity   Int            @default(1)
+  price      Int
+}
+
+model CartItem {
+  id           String         @id @default(uuid())
+  sessionId    String
+  variantId    String
+  variant      ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  quantity     Int            @default(1)
+  tenureMonths Int            @default(12)
+  createdAt    DateTime       @default(now())
+}
