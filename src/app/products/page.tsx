@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductFilterSidebar } from '@/components/ProductFilterSidebar';
 import { Product } from '@/types';
-import { SlidersHorizontal, Search, RefreshCw, AlertCircle } from 'lucide-react';
+import { Search, AlertCircle } from 'lucide-react';
 
 function ProductCatalogContent() {
   const searchParams = useSearchParams();
@@ -15,7 +15,6 @@ function ProductCatalogContent() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
 
-  // Filters state
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([40000, 200000]);
   const [selectedStorages, setSelectedStorages] = useState<string[]>([]);
@@ -67,26 +66,26 @@ function ProductCatalogContent() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Page Title & Search Bar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+      {/* Page Title */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6">
         <div>
-          <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
-            Flagship Smartphones on EMI
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Flagship Smartphones
           </h1>
-          <p className="text-xs sm:text-sm text-slate-400 mt-1">
-            Collateralized mutual fund financing plans • Zero portfolio liquidation
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+            Pay easy monthly installments without selling your mutual fund investments
           </p>
         </div>
 
-        {/* Sorting & Search */}
+        {/* Search & Sorting */}
         <div className="flex items-center gap-3">
           <div className="relative flex-1 md:w-64">
             <input
               type="text"
-              placeholder="Search catalog..."
+              placeholder="Search smartphones..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-900 border border-slate-800 rounded-xl py-2 pl-9 pr-4 text-xs text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none"
+              className="w-full bg-white border border-slate-200 rounded-xl py-2 pl-9 pr-4 text-xs text-slate-800 placeholder-slate-400 focus:border-emerald-600 focus:outline-none shadow-xs"
             />
             <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
           </div>
@@ -94,7 +93,7 @@ function ProductCatalogContent() {
           <select
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
-            className="bg-slate-900 border border-slate-800 rounded-xl py-2 px-3 text-xs text-slate-300 font-semibold focus:border-emerald-500/50 focus:outline-none"
+            className="bg-white border border-slate-200 rounded-xl py-2 px-3 text-xs text-slate-700 font-semibold focus:border-emerald-600 focus:outline-none shadow-xs"
           >
             <option value="featured">Sort by: Featured</option>
             <option value="price_asc">Price: Low to High</option>
@@ -104,9 +103,8 @@ function ProductCatalogContent() {
         </div>
       </div>
 
-      {/* Main Content Layout (Sidebar + Product Grid) */}
+      {/* Sidebar + Product Grid */}
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* Left Filter Sidebar */}
         <ProductFilterSidebar
           selectedBrands={selectedBrands}
           setSelectedBrands={setSelectedBrands}
@@ -119,30 +117,28 @@ function ProductCatalogContent() {
           resetFilters={resetFilters}
         />
 
-        {/* Right Products Listing Grid */}
         <div className="flex-1 space-y-6">
           {loading ? (
-            /* Shimmer Skeleton Placeholder */
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[1, 2, 3, 4, 5, 6].map((n) => (
                 <div
                   key={n}
-                  className="rounded-2xl border border-slate-800 p-5 space-y-4 shimmer-skeleton h-96"
+                  className="rounded-2xl border border-slate-200 p-5 space-y-4 shimmer-skeleton h-96 bg-white"
                 />
               ))}
             </div>
           ) : products.length === 0 ? (
-            <div className="glass-panel p-12 rounded-3xl text-center space-y-4 border border-slate-800">
-              <AlertCircle className="w-10 h-10 text-emerald-400 mx-auto" />
+            <div className="flat-card p-12 rounded-3xl text-center space-y-4 border border-slate-200 bg-white">
+              <AlertCircle className="w-10 h-10 text-emerald-600 mx-auto" />
               <div>
-                <h3 className="font-bold text-white text-base">No smartphones match your filters</h3>
-                <p className="text-xs text-slate-400 mt-1">
+                <h3 className="font-bold text-slate-900 text-base">No phones match your filters</h3>
+                <p className="text-xs text-slate-500 mt-1">
                   Try adjusting price range, selected brands, or clearing active search terms.
                 </p>
               </div>
               <button
                 onClick={resetFilters}
-                className="py-2 px-4 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs hover:bg-emerald-400 transition-colors"
+                className="py-2 px-4 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-emerald-700 transition-colors"
               >
                 Reset All Filters
               </button>
@@ -162,9 +158,7 @@ function ProductCatalogContent() {
 
 export default function ProductsPage() {
   return (
-    <Suspense fallback={
-      <div className="max-w-7xl mx-auto p-8 text-center text-slate-400">Loading catalog...</div>
-    }>
+    <Suspense fallback={<div className="max-w-7xl mx-auto p-8 text-center text-slate-400">Loading catalog...</div>}>
       <ProductCatalogContent />
     </Suspense>
   );

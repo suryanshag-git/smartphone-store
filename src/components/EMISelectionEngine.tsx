@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { EMIPlan, ProductVariant } from '@/types';
-import { Check, Sparkles, TrendingUp, Tag, ArrowRight } from 'lucide-react';
+import { Check, Sparkles, Tag, ArrowRight } from 'lucide-react';
 
 interface EMISelectionEngineProps {
   emiPlans: EMIPlan[];
@@ -23,19 +23,19 @@ export const EMISelectionEngine: React.FC<EMISelectionEngineProps> = ({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-base font-extrabold text-white tracking-tight flex items-center gap-2">
-            <span>Select Mutual Fund EMI Plan</span>
-            <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+          <h3 className="text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+            <span>Pick a monthly plan that fits your budget</span>
+            <span className="text-xs font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
               Instant Approval
             </span>
           </h3>
-          <p className="text-xs text-slate-400 mt-0.5">
-            Collateralized against your existing MF portfolio. Zero liquidations required.
+          <p className="text-xs text-slate-500 mt-0.5">
+            Backed by your mutual funds. Zero portfolio selling required.
           </p>
         </div>
       </div>
 
-      {/* Vertical Interactive EMI Tenure Cards List */}
+      {/* Vertical Flat EMI Card List */}
       <div className="space-y-3">
         {emiPlans.map((plan) => {
           const isSelected = selectedPlan?.id === plan.id;
@@ -53,7 +53,7 @@ export const EMISelectionEngine: React.FC<EMISelectionEngineProps> = ({
               className={`cursor-pointer rounded-2xl p-4 transition-all duration-200 relative border ${
                 isSelected
                   ? 'active-emi-card'
-                  : 'glass-card hover:border-slate-700 border-slate-800/90'
+                  : 'bg-white hover:border-slate-300 border-slate-200 shadow-xs'
               }`}
             >
               <div className="flex items-center justify-between gap-4">
@@ -62,8 +62,8 @@ export const EMISelectionEngine: React.FC<EMISelectionEngineProps> = ({
                   <div
                     className={`w-6 h-6 rounded-full flex items-center justify-center transition-colors border ${
                       isSelected
-                        ? 'bg-emerald-500 border-emerald-400 text-slate-950 shadow-md shadow-emerald-500/50'
-                        : 'border-slate-700 bg-slate-900/80'
+                        ? 'bg-emerald-600 border-emerald-600 text-white shadow-xs'
+                        : 'border-slate-300 bg-white'
                     }`}
                   >
                     {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
@@ -71,24 +71,24 @@ export const EMISelectionEngine: React.FC<EMISelectionEngineProps> = ({
 
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-extrabold text-base text-white">
+                      <span className="font-extrabold text-base text-slate-900">
                         {plan.tenureMonths} Months
                       </span>
 
                       {/* Interest Rate Pill */}
                       {plan.isZeroPercent ? (
-                        <span className="bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-                          <Sparkles className="w-3 h-3" />
+                        <span className="bg-emerald-100 text-emerald-800 border border-emerald-200 text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
+                          <Sparkles className="w-3 h-3 text-emerald-600" />
                           0% Interest
                         </span>
                       ) : (
-                        <span className="bg-slate-800 text-slate-300 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                        <span className="bg-slate-100 text-slate-600 text-[10px] font-semibold px-2 py-0.5 rounded-md">
                           {plan.annualInterestRate}% p.a.
                         </span>
                       )}
 
                       {plan.popularTag && (
-                        <span className="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full hidden sm:inline-block">
+                        <span className="bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold px-2 py-0.5 rounded-md hidden sm:inline-block">
                           {plan.popularTag}
                         </span>
                       )}
@@ -96,23 +96,23 @@ export const EMISelectionEngine: React.FC<EMISelectionEngineProps> = ({
 
                     {/* Cashback Spark Tag */}
                     {plan.cashbackTag ? (
-                      <div className="flex items-center gap-1 text-xs text-emerald-400 font-semibold mt-1">
-                        <Tag className="w-3.5 h-3.5" />
+                      <div className="flex items-center gap-1 text-xs text-emerald-700 font-semibold mt-1">
+                        <Tag className="w-3.5 h-3.5 text-emerald-600" />
                         <span>{plan.cashbackTag}</span>
                       </div>
                     ) : (
-                      <p className="text-[11px] text-slate-400 mt-0.5">
-                        Zero pre-closure charges • 100% MF wealth growth preserved
+                      <p className="text-[11px] text-slate-500 mt-0.5">
+                        Zero foreclosure fees • Your mutual fund returns continue uninterrupted
                       </p>
                     )}
                   </div>
                 </div>
 
-                {/* Right Side Monthly Installment */}
+                {/* Right Side Monthly Amount */}
                 <div className="text-right">
-                  <div className="text-lg font-black text-emerald-400 tracking-tight">
+                  <div className="text-lg font-black text-emerald-700 tracking-tight">
                     ₹{monthlyAmount.toLocaleString('en-IN')}
-                    <span className="text-xs font-normal text-slate-400">/mo</span>
+                    <span className="text-xs font-normal text-slate-500">/mo</span>
                   </div>
 
                   <div className="text-[10px] text-slate-400">
@@ -128,9 +128,9 @@ export const EMISelectionEngine: React.FC<EMISelectionEngineProps> = ({
       {/* Primary Proceed CTA Button */}
       <button
         onClick={onProceed}
-        className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-base tracking-wide flex items-center justify-center gap-3 shadow-xl shadow-emerald-950/60 transition-all hover:scale-[1.01] active:scale-[0.99] mt-6"
+        className="w-full py-4 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-base tracking-wide flex items-center justify-center gap-2 shadow-md shadow-emerald-700/20 transition-all hover:scale-[1.005] active:scale-[0.995] mt-6"
       >
-        <span>Proceed with Selected Plan ({selectedPlan?.tenureMonths} Months)</span>
+        <span>Continue with {selectedPlan?.tenureMonths} Month Plan</span>
         <ArrowRight className="w-5 h-5" />
       </button>
     </div>

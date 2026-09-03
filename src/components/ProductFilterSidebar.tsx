@@ -54,16 +54,16 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({
   };
 
   return (
-    <aside className="w-full lg:w-72 glass-panel p-5 rounded-2xl border border-slate-800 shrink-0 self-start space-y-6">
-      {/* Sidebar Header */}
-      <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
-        <div className="flex items-center gap-2 text-slate-100 font-bold text-sm tracking-wide">
-          <Filter className="w-4 h-4 text-emerald-400" />
-          <span>Filter Products</span>
+    <aside className="w-full lg:w-72 flat-card p-5 rounded-2xl border border-slate-200 shrink-0 self-start space-y-6 bg-white">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+          <Filter className="w-4 h-4 text-emerald-600" />
+          <span>Filters</span>
         </div>
         <button
           onClick={resetFilters}
-          className="text-xs text-slate-400 hover:text-emerald-400 flex items-center gap-1 transition-colors"
+          className="text-xs text-slate-500 hover:text-emerald-700 flex items-center gap-1 transition-colors"
         >
           <RotateCcw className="w-3.5 h-3.5" />
           Reset
@@ -71,27 +71,27 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({
       </div>
 
       {/* 0% Interest Toggle */}
-      <div className="p-3.5 rounded-xl bg-gradient-to-r from-emerald-950/40 to-slate-900 border border-emerald-500/20 flex items-center justify-between">
+      <div className="p-3.5 rounded-xl bg-emerald-50/60 border border-emerald-100 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-emerald-400" />
-          <span className="text-xs font-semibold text-slate-200">0% Interest Plans Only</span>
+          <Sparkles className="w-4 h-4 text-emerald-600" />
+          <span className="text-xs font-semibold text-slate-900">0% Interest Only</span>
         </div>
         <button
           type="button"
           onClick={() => setZeroInterestOnly(!zeroInterestOnly)}
-          className={`w-10 h-5 flex items-center rounded-full p-0.5 transition-colors ${
-            zeroInterestOnly ? 'bg-emerald-500 justify-end' : 'bg-slate-800 justify-start'
+          className={`w-9 h-5 flex items-center rounded-full p-0.5 transition-colors ${
+            zeroInterestOnly ? 'bg-emerald-600 justify-end' : 'bg-slate-300 justify-start'
           }`}
         >
-          <span className="w-4 h-4 rounded-full bg-white shadow-md transform transition-transform" />
+          <span className="w-4 h-4 rounded-full bg-white shadow-xs" />
         </button>
       </div>
 
       {/* Price Slider */}
       <div className="space-y-3">
         <div className="flex items-center justify-between text-xs">
-          <span className="font-semibold text-slate-300">Max Budget</span>
-          <span className="font-bold text-emerald-400 text-sm">
+          <span className="font-semibold text-slate-700">Max Budget</span>
+          <span className="font-extrabold text-emerald-700 text-sm">
             ₹{priceRange[1].toLocaleString('en-IN')}
           </span>
         </div>
@@ -102,17 +102,17 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({
           step={5000}
           value={priceRange[1]}
           onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-          className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+          className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
         />
-        <div className="flex justify-between text-[11px] text-slate-500 font-medium">
+        <div className="flex justify-between text-[11px] text-slate-400 font-medium">
           <span>₹40,000</span>
           <span>₹2,00,000+</span>
         </div>
       </div>
 
-      {/* Brand Checkboxes */}
+      {/* Brand Filter */}
       <div className="space-y-3">
-        <span className="text-xs font-semibold text-slate-300 block">Brands</span>
+        <span className="text-xs font-bold text-slate-700 uppercase tracking-wider block">Brand</span>
         <div className="space-y-2">
           {BRANDS.map((brand) => {
             const isChecked = selectedBrands.includes(brand.id);
@@ -122,14 +122,14 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({
                 onClick={() => toggleBrand(brand.id)}
                 className="flex items-center justify-between cursor-pointer group py-1"
               >
-                <span className="text-xs text-slate-300 group-hover:text-white transition-colors">
+                <span className="text-xs text-slate-700 group-hover:text-slate-900 font-medium transition-colors">
                   {brand.name}
                 </span>
                 <div
                   className={`w-4 h-4 rounded flex items-center justify-center transition-colors border ${
                     isChecked
-                      ? 'bg-emerald-500 border-emerald-500 text-slate-950'
-                      : 'border-slate-700 bg-slate-900 group-hover:border-slate-500'
+                      ? 'bg-emerald-600 border-emerald-600 text-white'
+                      : 'border-slate-300 bg-white group-hover:border-slate-400'
                   }`}
                 >
                   {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
@@ -140,9 +140,9 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({
         </div>
       </div>
 
-      {/* Storage Filters */}
+      {/* Storage Filter */}
       <div className="space-y-3">
-        <span className="text-xs font-semibold text-slate-300 block">Storage Option</span>
+        <span className="text-xs font-bold text-slate-700 uppercase tracking-wider block">Storage Capacity</span>
         <div className="grid grid-cols-2 gap-2">
           {STORAGES.map((storage) => {
             const isSelected = selectedStorages.includes(storage);
@@ -152,8 +152,8 @@ export const ProductFilterSidebar: React.FC<FilterSidebarProps> = ({
                 onClick={() => toggleStorage(storage)}
                 className={`py-1.5 px-3 rounded-lg text-xs font-medium border transition-all ${
                   isSelected
-                    ? 'bg-emerald-500/10 border-emerald-500 text-emerald-400 font-semibold'
-                    : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                    ? 'bg-emerald-50 border-emerald-600 text-emerald-800 font-bold'
+                    : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
                 {storage}

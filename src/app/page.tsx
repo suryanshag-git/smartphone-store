@@ -2,8 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
+
 import { ProductCard } from '@/components/ProductCard';
-import { ShieldCheck, TrendingUp, Sparkles, ArrowRight, Zap, RefreshCw, Smartphone } from 'lucide-react';
+import { ShieldCheck, TrendingUp, Sparkles, ArrowRight, Smartphone, CheckCircle2 } from 'lucide-react';
 import { Product } from '@/types';
 
 async function getFeaturedProducts(): Promise<Product[]> {
@@ -27,48 +28,46 @@ export default async function HomePage() {
   return (
     <div className="space-y-16 pb-16">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-12 pb-16 border-b border-slate-800/80 bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-tr from-emerald-500/10 via-teal-500/15 to-transparent blur-3xl rounded-full pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold tracking-wide">
-            <Sparkles className="w-4 h-4 animate-spin" />
-            <span>Next-Gen Mutual Fund Backed Financing</span>
+      <section className="relative overflow-hidden pt-12 pb-16 border-b border-slate-200/80 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold tracking-wide">
+            <Sparkles className="w-4 h-4 text-emerald-600" />
+            <span>Smart financing for mutual fund investors</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-tight sm:leading-none">
-            Buy Flagship Smartphones on{' '}
-            <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
-              0% Mutual Fund Credit
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-900 max-w-4xl mx-auto leading-tight sm:leading-none">
+            Get your next phone.{' '}
+            <span className="text-emerald-600 underline decoration-emerald-300 decoration-wavy decoration-2">
+              Keep your investments growing.
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal">
-            Pledge your existing mutual fund investments for instant credit. Keep earning compounding SIP returns while enjoying low-cost monthly EMI plans.
+          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
+            Don't sell your mutual funds or break your SIPs. Pay easy monthly installments while your portfolio stays 100% untouched and earning market returns.
           </p>
 
-          {/* Quick Hero Metrics */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 pt-4">
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-300 bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-800">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>0% Portfolio Liquidation</span>
+          {/* Quick Human Value Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 pt-2">
+            <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 bg-slate-100 px-3.5 py-2 rounded-xl">
+              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <span>Zero Portfolio Selling</span>
             </div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-300 bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-800">
-              <TrendingUp className="w-4 h-4 text-teal-400" />
-              <span>Keep 14%+ Expected SIP CAGR</span>
+            <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 bg-slate-100 px-3.5 py-2 rounded-xl">
+              <TrendingUp className="w-4 h-4 text-emerald-600" />
+              <span>Keep Compounding Returns</span>
             </div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-300 bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-800">
-              <Zap className="w-4 h-4 text-amber-400" />
-              <span>Instant Digital Lien Approval</span>
+            <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 bg-slate-100 px-3.5 py-2 rounded-xl">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <span>0% Interest Options</span>
             </div>
           </div>
 
           <div className="pt-4">
             <Link
               href="/products"
-              className="inline-flex items-center gap-3 py-4 px-8 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-sm tracking-wide shadow-xl shadow-emerald-950/80 transition-all hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-2.5 py-4 px-8 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm tracking-wide shadow-md shadow-emerald-700/20 transition-all hover:scale-105 active:scale-95"
             >
-              <span>Explore Flagship Devices</span>
+              <span>Explore Flagship Phones</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -77,22 +76,22 @@ export default async function HomePage() {
 
       {/* Featured Smartphones Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 border-b border-slate-800 pb-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-widest">
+            <div className="flex items-center gap-2 text-xs font-bold text-emerald-700 uppercase tracking-widest">
               <Smartphone className="w-4 h-4" />
-              <span>Flagship Selection</span>
+              <span>Popular Smartphones</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-1">
-              Top Smartphones Available on MF EMI
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-1">
+              Choose your phone & monthly plan
             </h2>
           </div>
 
           <Link
             href="/products"
-            className="text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 transition-colors"
+            className="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5 transition-colors"
           >
-            <span>View All Smartphones ({products.length})</span>
+            <span>View all phones ({products.length})</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -104,49 +103,49 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Value Proposition Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div className="glass-panel p-8 sm:p-12 rounded-3xl border border-emerald-500/20 bg-gradient-to-b from-slate-900/90 to-slate-950 space-y-8">
-          <div className="text-center space-y-2 max-w-2xl mx-auto">
-            <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">
-              Smart Fintech Financing
+      {/* 3 Simple Steps */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <div className="flat-card p-8 sm:p-12 rounded-3xl border border-slate-200 bg-white space-y-8">
+          <div className="text-center space-y-2 max-w-xl mx-auto">
+            <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
+              Simple 3-Step Process
             </span>
-            <h3 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
-              Why Choose Mutual Fund Backed EMI?
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              How buying on mutual fund credit works
             </h3>
-            <p className="text-xs sm:text-sm text-slate-400">
-              Traditional credit cards charge high interest or consume your cash balance. Mutual fund collateral financing lets your money keep growing.
+            <p className="text-xs sm:text-sm text-slate-500">
+              No long paperwork, no credit card required.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-            <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold">
-                01
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+              <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white font-extrabold flex items-center justify-center text-sm shadow-xs">
+                1
               </div>
-              <h4 className="font-bold text-white text-base">Zero Portfolio Liquidation</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Your mutual fund units remain safely in your CAMS/KFintech folio. No exit load, no capital gains tax.
+              <h4 className="font-bold text-slate-900 text-base">Select Your Phone & Plan</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Pick your preferred model, storage capacity, and tenure (3 to 60 months).
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 font-bold">
-                02
+            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+              <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white font-extrabold flex items-center justify-center text-sm shadow-xs">
+                2
               </div>
-              <h4 className="font-bold text-white text-base">Earn While You Pay</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                If your mutual funds yield 14%+ annual CAGR, your wealth growth offsets or exceeds your monthly EMI cost.
+              <h4 className="font-bold text-slate-900 text-base">Instant Mobile OTP Link</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Enter your mobile number linked to CAMS/KFintech to automatically verify your mutual fund holdings.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold">
-                03
+            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+              <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white font-extrabold flex items-center justify-center text-sm shadow-xs">
+                3
               </div>
-              <h4 className="font-bold text-white text-base">Flexible Tenure Options</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Select tenures from 3 to 60 months with special 0% No Cost EMI offers and instant cashback tags.
+              <h4 className="font-bold text-slate-900 text-base">Keep Earning Returns</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Your mutual funds stay pledged in your folio while you pay your monthly EMI. 100% of your wealth continues to grow.
               </p>
             </div>
           </div>

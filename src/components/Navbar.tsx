@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ShoppingBag, ShieldCheck, Search, PhoneCall, TrendingUp, Sparkles, Layers } from 'lucide-react';
+import { ShoppingBag, Search, TrendingUp, Layers, CheckCircle2 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 export const Navbar: React.FC = () => {
@@ -17,74 +17,65 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 glass-nav transition-all">
-      {/* Top Banner */}
-      <div className="bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-emerald-900/40 border-b border-emerald-500/20 py-1.5 px-4 text-xs text-center text-emerald-300 flex items-center justify-center gap-2">
-        <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-        <span>Buy Flagship Phones with <strong>0% Portfolio Liquidation</strong> using Mutual Fund Backed EMI Plans</span>
-        <span className="hidden md:inline bg-emerald-500/20 px-2 py-0.5 rounded-full text-[10px] text-emerald-300 font-semibold border border-emerald-500/30">Instant Approval</span>
+    <header className="sticky top-0 z-50 flat-nav">
+      {/* Top Banner - Human conversational message */}
+      <div className="bg-emerald-50 border-b border-emerald-100 py-1.5 px-4 text-xs text-center text-emerald-900 font-medium flex items-center justify-center gap-2">
+        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+        <span>Get your dream phone without selling your mutual funds. Your investments keep growing.</span>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 p-0.5 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-            <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-emerald-400" />
-            </div>
+          <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
+            <TrendingUp className="w-5 h-5" />
           </div>
           <div>
-            <div className="flex items-center gap-1.5">
-              <span className="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-                1Fi<span className="text-emerald-400">.</span>Store
-              </span>
-              <span className="text-[10px] uppercase font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded">
-                MF-EMI
-              </span>
-            </div>
-            <p className="text-[10px] text-slate-400 font-medium">Smartphones on Mutual Fund Credit</p>
+            <span className="font-extrabold text-lg tracking-tight text-slate-900">
+              1Fi<span className="text-emerald-600">.</span>store
+            </span>
+            <p className="text-[10px] text-slate-500 font-medium">Smart EMI for Investors</p>
           </div>
         </Link>
 
         {/* Search Bar */}
-        <form onSubmit={handleSearchSubmit} className="hidden md:flex flex-1 max-w-md relative">
+        <form onSubmit={handleSearchSubmit} className="hidden md:flex flex-1 max-w-sm relative">
           <input
             type="text"
-            placeholder="Search iPhone 17 Pro, Galaxy S24 Ultra, Pixel..."
+            placeholder="Search iPhone, Galaxy, Pixel..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-900/90 border border-slate-800 rounded-full py-2 pl-10 pr-4 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
+            className="w-full bg-slate-100/80 border border-slate-200 rounded-full py-2 pl-9 pr-4 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 transition-all"
           />
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-2.5" />
+          <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
         </form>
 
-        {/* Quick Nav Items */}
-        <div className="flex items-center gap-3">
+        {/* Quick Nav Links */}
+        <div className="flex items-center gap-4">
           <Link
             href="/products"
-            className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-emerald-400 px-3 py-2 rounded-lg hover:bg-slate-800/50 transition-colors"
+            className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-emerald-700 px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors"
           >
-            <Layers className="w-4 h-4 text-emerald-400" />
-            Browse Catalog
+            <Layers className="w-4 h-4 text-emerald-600" />
+            Explore Phones
           </Link>
 
           <Link
             href="/orders"
-            className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-emerald-400 px-3 py-2 rounded-lg hover:bg-slate-800/50 transition-colors"
+            className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-emerald-700 px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors"
           >
-            <ShieldCheck className="w-4 h-4 text-teal-400" />
-            Track Order
+            My Orders
           </Link>
 
           {/* Cart Trigger */}
           <button
             onClick={() => setIsCartOpen(true)}
-            className="relative p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 hover:border-emerald-500/40 hover:text-emerald-400 transition-all group"
+            className="relative p-2.5 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 hover:border-emerald-600 hover:text-emerald-700 transition-all"
             aria-label="View Shopping Cart"
           >
-            <ShoppingBag className="w-5 h-5 group-hover:scale-110 transition-transform" />
+            <ShoppingBag className="w-5 h-5" />
             {cartCount > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-extrabold text-[11px] w-5 h-5 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/40 animate-pulse">
+              <span className="absolute -top-1.5 -right-1.5 bg-emerald-600 text-white font-extrabold text-[11px] w-5 h-5 rounded-full flex items-center justify-center shadow">
                 {cartCount}
               </span>
             )}

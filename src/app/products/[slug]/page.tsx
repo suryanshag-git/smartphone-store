@@ -8,7 +8,7 @@ import { MFTrustBanner } from '@/components/MFTrustBanner';
 import { EMIBreakdownModal } from '@/components/EMIBreakdownModal';
 import { MobileStickyBar } from '@/components/MobileStickyBar';
 import { Product, ProductVariant, EMIPlan } from '@/types';
-import { Star, ShieldCheck, Sparkles, AlertCircle, Cpu, Camera, Battery, Smartphone } from 'lucide-react';
+import { Star, Sparkles, AlertCircle, Cpu, Camera, Smartphone } from 'lucide-react';
 
 function ProductDetailContent({ slug }: { slug: string }) {
   const searchParams = useSearchParams();
@@ -31,7 +31,6 @@ function ProductDetailContent({ slug }: { slug: string }) {
           const prod: Product = data.product;
           setProduct(prod);
 
-          // Resolve variant based on URL search parameters
           let initialVariant = prod.variants?.[0];
           if (colorQuery || storageQuery) {
             const found = prod.variants.find((v) => {
@@ -43,7 +42,6 @@ function ProductDetailContent({ slug }: { slug: string }) {
           }
           setSelectedVariant(initialVariant || prod.variants?.[0]);
 
-          // Set default EMI plan (pre-select 6 months or zero-percent plan)
           const defaultPlan = prod.emiPlans?.find((p) => p.isZeroPercent && p.tenureMonths === 6) || prod.emiPlans?.[0];
           setSelectedPlan(defaultPlan || null);
         }
@@ -59,14 +57,14 @@ function ProductDetailContent({ slug }: { slug: string }) {
   if (loading) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-12 space-y-8 animate-pulse">
-        <div className="h-8 w-64 bg-slate-800 rounded-lg" />
+        <div className="h-8 w-64 bg-slate-200 rounded-lg" />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-5 h-[500px] bg-slate-900 rounded-3xl" />
+          <div className="lg:col-span-5 h-[460px] bg-slate-200 rounded-3xl" />
           <div className="lg:col-span-7 space-y-6">
-            <div className="h-10 w-3/4 bg-slate-800 rounded-lg" />
-            <div className="h-6 w-1/3 bg-slate-800 rounded-lg" />
-            <div className="h-32 bg-slate-900 rounded-2xl" />
-            <div className="h-64 bg-slate-900 rounded-2xl" />
+            <div className="h-10 w-3/4 bg-slate-200 rounded-lg" />
+            <div className="h-6 w-1/3 bg-slate-200 rounded-lg" />
+            <div className="h-32 bg-slate-200 rounded-2xl" />
+            <div className="h-64 bg-slate-200 rounded-2xl" />
           </div>
         </div>
       </div>
@@ -76,9 +74,9 @@ function ProductDetailContent({ slug }: { slug: string }) {
   if (!product || !selectedVariant) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-16 text-center space-y-4">
-        <AlertCircle className="w-12 h-12 text-emerald-400 mx-auto" />
-        <h2 className="text-2xl font-bold text-white">Smartphone Product Not Found</h2>
-        <p className="text-xs text-slate-400">The product slug you requested does not exist in our dataset.</p>
+        <AlertCircle className="w-12 h-12 text-emerald-600 mx-auto" />
+        <h2 className="text-2xl font-bold text-slate-900">Smartphone Not Found</h2>
+        <p className="text-xs text-slate-500">The product requested could not be located in our dataset.</p>
       </div>
     );
   }
@@ -89,7 +87,7 @@ function ProductDetailContent({ slug }: { slug: string }) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 pb-24 lg:pb-12">
       {/* Desktop 2-Column Responsive Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column (Sticky Desktop Showcase) */}
+        {/* Left Column Showcase */}
         <div className="lg:col-span-5">
           <ProductGallery
             product={product}
@@ -98,89 +96,87 @@ function ProductDetailContent({ slug }: { slug: string }) {
           />
         </div>
 
-        {/* Right Column (Scrollable Product Info & EMI Selection Engine) */}
+        {/* Right Column Product Info & EMI Selection */}
         <div className="lg:col-span-7 space-y-6">
-          {/* Brand & Badge Header */}
+          {/* Header */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <span className="bg-slate-900 border border-slate-700 text-slate-300 text-xs font-semibold uppercase px-3 py-1 rounded-full">
+              <span className="bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold uppercase px-3 py-1 rounded-md">
                 {product.brand}
               </span>
               {product.badge && (
-                <span className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                  <Sparkles className="w-3.5 h-3.5" />
+                <span className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold px-3 py-1 rounded-md flex items-center gap-1">
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
                   {product.badge}
                 </span>
               )}
             </div>
 
-            {/* Title */}
-            <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
               {product.name}
             </h1>
 
-            {/* Rating Stars */}
-            <div className="flex items-center gap-3 text-xs text-slate-400">
-              <div className="flex items-center gap-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-0.5 rounded-md font-bold">
-                <Star className="w-3.5 h-3.5 fill-amber-400" />
+            <div className="flex items-center gap-3 text-xs text-slate-500">
+              <div className="flex items-center gap-1 bg-amber-50 text-amber-800 border border-amber-200 px-2.5 py-0.5 rounded-md font-bold">
+                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                 <span>{product.rating}</span>
               </div>
-              <span>({product.reviewCount} Verified Buyers)</span>
-              <span className="text-emerald-400 font-semibold">• In Stock ({selectedVariant.stockCount} units available)</span>
+              <span>({product.reviewCount} Verified Ratings)</span>
+              <span className="text-emerald-700 font-bold">• Ready to Dispatch</span>
             </div>
           </div>
 
-          {/* Pricing Display */}
-          <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
+          {/* Pricing Box */}
+          <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
             <div className="flex items-baseline gap-3">
-              <span className="text-2xl sm:text-3xl font-black text-white">
+              <span className="text-2xl sm:text-3xl font-black text-slate-900">
                 ₹{selectedVariant.price.toLocaleString('en-IN')}
               </span>
-              <span className="text-sm text-slate-500 line-through font-medium">
+              <span className="text-sm text-slate-400 line-through font-medium">
                 MRP: ₹{selectedVariant.mrp.toLocaleString('en-IN')}
               </span>
-              <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+              <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                 Save ₹{(selectedVariant.mrp - selectedVariant.price).toLocaleString('en-IN')}
               </span>
             </div>
-            <p className="text-[11px] text-slate-400">
-              Inclusive of all taxes • Free express doorstep delivery & setup
+            <p className="text-[11px] text-slate-500">
+              Free doorstep express delivery • Standard manufacturer warranty included
             </p>
           </div>
 
           {/* Mutual Fund Trust Banner */}
           <MFTrustBanner />
 
-          {/* Key Hardware Specs Chips */}
+          {/* Specs Grid */}
           {parsedSpecs && Object.keys(parsedSpecs).length > 0 && (
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
               {parsedSpecs.display && (
-                <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-1">
-                  <Smartphone className="w-4 h-4 text-emerald-400" />
-                  <p className="text-[10px] text-slate-500 uppercase font-bold">Display</p>
-                  <p className="text-xs text-slate-200 font-medium line-clamp-1">{parsedSpecs.display}</p>
+                <div className="p-3 rounded-xl bg-white border border-slate-200 space-y-1">
+                  <Smartphone className="w-4 h-4 text-emerald-600" />
+                  <p className="text-[10px] text-slate-400 uppercase font-bold">Display</p>
+                  <p className="text-xs text-slate-800 font-semibold line-clamp-1">{parsedSpecs.display}</p>
                 </div>
               )}
               {parsedSpecs.chipset && (
-                <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-1">
-                  <Cpu className="w-4 h-4 text-teal-400" />
-                  <p className="text-[10px] text-slate-500 uppercase font-bold">Processor</p>
-                  <p className="text-xs text-slate-200 font-medium line-clamp-1">{parsedSpecs.chipset}</p>
+                <div className="p-3 rounded-xl bg-white border border-slate-200 space-y-1">
+                  <Cpu className="w-4 h-4 text-emerald-600" />
+                  <p className="text-[10px] text-slate-400 uppercase font-bold">Processor</p>
+                  <p className="text-xs text-slate-800 font-semibold line-clamp-1">{parsedSpecs.chipset}</p>
                 </div>
               )}
               {parsedSpecs.camera && (
-                <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-1">
-                  <Camera className="w-4 h-4 text-cyan-400" />
-                  <p className="text-[10px] text-slate-500 uppercase font-bold">Camera</p>
-                  <p className="text-xs text-slate-200 font-medium line-clamp-1">{parsedSpecs.camera}</p>
+                <div className="p-3 rounded-xl bg-white border border-slate-200 space-y-1">
+                  <Camera className="w-4 h-4 text-emerald-600" />
+                  <p className="text-[10px] text-slate-400 uppercase font-bold">Camera</p>
+                  <p className="text-xs text-slate-800 font-semibold line-clamp-1">{parsedSpecs.camera}</p>
                 </div>
               )}
             </div>
           )}
 
-          {/* EMI Selection Engine (Tenure Cards 3, 6, 12, 24, 36, 48, 60 months) */}
+          {/* EMI Selection Engine */}
           {product.emiPlans && selectedPlan && (
-            <div className="pt-4 border-t border-slate-800">
+            <div className="pt-4 border-t border-slate-200">
               <EMISelectionEngine
                 emiPlans={product.emiPlans}
                 selectedVariant={selectedVariant}
@@ -193,7 +189,7 @@ function ProductDetailContent({ slug }: { slug: string }) {
         </div>
       </div>
 
-      {/* Review Modal / Drawer */}
+      {/* Review Modal */}
       {selectedPlan && (
         <EMIBreakdownModal
           isOpen={isModalOpen}
@@ -204,7 +200,7 @@ function ProductDetailContent({ slug }: { slug: string }) {
         />
       )}
 
-      {/* Mobile Sticky Bottom Bar */}
+      {/* Mobile Sticky Bar */}
       {selectedPlan && (
         <MobileStickyBar
           selectedVariant={selectedVariant}

@@ -26,24 +26,24 @@ export const MobileStickyBar: React.FC<MobileStickyBarProps> = ({
     : Math.round((P * (1 + (R * N) / 1200)) / N);
 
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 p-4 glass-nav border-t border-emerald-500/20 shadow-2xl shadow-slate-950 flex items-center justify-between gap-3">
+    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 p-4 flat-nav border-t border-slate-200 shadow-xl flex items-center justify-between gap-3 bg-white">
       <div>
-        <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-bold uppercase tracking-wider">
-          <Sparkles className="w-3 h-3" />
-          <span>{N}M MF-EMI</span>
+        <div className="flex items-center gap-1 text-[10px] text-emerald-800 font-bold uppercase tracking-wider">
+          <Sparkles className="w-3 h-3 text-emerald-600" />
+          <span>{N} Month Plan</span>
         </div>
 
-        <div className="text-lg font-black text-emerald-400 tracking-tight">
+        <div className="text-lg font-black text-slate-900 tracking-tight">
           ₹{monthlyInstallment.toLocaleString('en-IN')}
-          <span className="text-xs font-normal text-slate-400">/mo</span>
+          <span className="text-xs font-normal text-slate-500">/mo</span>
         </div>
       </div>
 
       <button
         onClick={onProceed}
-        className="py-3 px-5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-xs flex items-center gap-2 shadow-lg shadow-emerald-950/60 transition-transform active:scale-[0.98]"
+        className="py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-2 shadow-md transition-transform active:scale-[0.98]"
       >
-        <span>Proceed</span>
+        <span>Continue</span>
         <ArrowRight className="w-4 h-4" />
       </button>
     </div>

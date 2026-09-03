@@ -5,9 +5,9 @@ import { Navbar } from '@/components/Navbar';
 import { CartDrawer } from '@/components/CartDrawer';
 
 export const metadata: Metadata = {
-  title: '1Fi Store | Buy Flagship Smartphones on Mutual Fund EMI',
-  description: 'Purchase flagship smartphones like iPhone 17 Pro, Galaxy S24 Ultra, and Pixel 9 Pro using collateralized mutual fund-backed EMI financing plans with 0% portfolio liquidation.',
-  keywords: 'Mutual Fund EMI, iPhone on EMI, SnapMint, 1Fi, Smartphone Financing, 0% Interest EMI, Collateral Credit',
+  title: '1Fi Store | Buy Phones on Mutual Fund EMI',
+  description: 'Buy flagship smartphones like iPhone 17 Pro and Galaxy S24 Ultra without selling your mutual funds. Simple monthly plans with zero interest options.',
+  keywords: 'Smartphone EMI, iPhone EMI, Mutual Fund Financing, 0% Interest EMI',
 };
 
 export default function RootLayout({
@@ -16,22 +16,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-emerald-500 selection:text-slate-950">
+    <html lang="en">
+      <body className="bg-slate-50 text-slate-900 min-h-screen flex flex-col antialiased selection:bg-emerald-100 selection:text-emerald-900">
         <CartProvider>
           <Navbar />
           <CartDrawer />
           <main className="flex-1">{children}</main>
-          <footer className="border-t border-slate-800/80 bg-slate-950 py-10 mt-16 text-center text-xs text-slate-500">
+          <footer className="border-t border-slate-200 bg-white py-12 mt-20 text-center text-xs text-slate-500">
             <div className="max-w-7xl mx-auto px-4 space-y-3">
-              <p className="font-semibold text-slate-400">
-                1Fi Smartphone Store • Mutual Fund Backed EMI Financing Platform
+              <p className="font-semibold text-slate-700 text-sm">
+                1Fi Store • Smart Phone Financing for Investors
               </p>
-              <p>
-                All loans are collateralized against mutual fund folios via RBI-regulated NBFC partners. 0% portfolio liquidation guarantees uninterrupted SIP compounding growth.
+              <p className="max-w-2xl mx-auto text-slate-500">
+                Your mutual fund investments stay pledged in your folio while you pay monthly. Zero portfolio selling means your money keeps growing during your entire tenure.
               </p>
-              <p className="text-[10px] text-slate-600">
-                © {new Date().getFullYear()} 1Fi Technologies. Demo MVP application.
+              <p className="text-[11px] text-slate-400 pt-2">
+                © {new Date().getFullYear()} 1Fi Technologies. Built for smart buyers.
               </p>
             </div>
           </footer>
