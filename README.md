@@ -7,6 +7,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3FCF8E?style=flat-square&logo=supabase)](https://supabase.com/)
 [![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=flat-square&logo=prisma)](https://www.prisma.io/)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?style=flat-square&logo=vercel)](https://vercel.com/)
 
 ---
 
@@ -133,6 +134,37 @@ erDiagram
 | `/api/mf-portfolio` | `GET` | Queries user mutual fund holdings & credit limit |
 | `/api/orders` | `POST` | Places new order & registers mutual fund pledge |
 | `/api/orders/[id]` | `GET` | Fetches order fulfillment status for tracking |
+
+---
+
+## 🌐 Vercel Deployment Guide
+
+Deploying **Slate** to Vercel takes less than 2 minutes:
+
+### 1. Push Code to GitHub
+Make sure your latest code is committed and pushed to GitHub:
+```bash
+git add .
+git commit -m "feat: prepare for vercel deployment"
+git push origin main
+```
+
+### 2. Import Project in Vercel
+1. Log in to [Vercel Dashboard](https://vercel.com/new) and click **Add New...** -> **Project**.
+2. Connect your GitHub account and import your repository.
+3. Vercel automatically detects **Next.js** framework settings.
+
+### 3. Add Environment Variables
+Under the **Environment Variables** section, add your production variables:
+
+| Variable Name | Description | Example Value |
+| :--- | :--- | :--- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase Cloud Project URL | `https://your-project.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase Anonymous Key | `eyJhbGciOiJIUzI1...` |
+| `DATABASE_URL` | Supabase PostgreSQL Connection String | `postgres://postgres:pass@db.xxx.supabase.co:6543/postgres` |
+
+### 4. Deploy!
+Click **Deploy**. Vercel will build your Next.js application and generate your live production URL (e.g. `https://slate-smartphone-store.vercel.app`).
 
 ---
 
