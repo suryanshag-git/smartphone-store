@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('Seeding official smartphone variants dataset...');
+  console.log('Seeding Apple variant images from local product-variants assets...');
 
   // Clean existing data
   await prisma.orderItem.deleteMany();
@@ -14,7 +14,7 @@ async function main() {
   await prisma.product.deleteMany();
   await prisma.mutualFundPortfolio.deleteMany();
 
-  // 1. Apple iPhone 17 Pro
+  // 1. Apple iPhone 17 Pro (Using exact variant images from product-variants/apple)
   await prisma.product.create({
     data: {
       slug: 'iphone-17-pro',
@@ -45,8 +45,8 @@ async function main() {
             storageSlug: '256gb',
             price: 134900,
             mrp: 144900,
-            image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop']),
+            image: '/images/variants/apple/cosmic-orange.png',
+            gallery: JSON.stringify(['/images/variants/apple/cosmic-orange.png']),
             inStock: true,
             stockCount: 24
           },
@@ -58,8 +58,8 @@ async function main() {
             storageSlug: '512gb',
             price: 154900,
             mrp: 164900,
-            image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop']),
+            image: '/images/variants/apple/cosmic-orange.png',
+            gallery: JSON.stringify(['/images/variants/apple/cosmic-orange.png']),
             inStock: true,
             stockCount: 18
           },
@@ -71,8 +71,8 @@ async function main() {
             storageSlug: '1tb',
             price: 174900,
             mrp: 184900,
-            image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop']),
+            image: '/images/variants/apple/cosmic-orange.png',
+            gallery: JSON.stringify(['/images/variants/apple/cosmic-orange.png']),
             inStock: true,
             stockCount: 10
           },
@@ -85,8 +85,8 @@ async function main() {
             storageSlug: '256gb',
             price: 134900,
             mrp: 144900,
-            image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=1000&auto=format&fit=crop']),
+            image: '/images/variants/apple/deep-blue.png',
+            gallery: JSON.stringify(['/images/variants/apple/deep-blue.png']),
             inStock: true,
             stockCount: 15
           },
@@ -98,8 +98,8 @@ async function main() {
             storageSlug: '512gb',
             price: 154900,
             mrp: 164900,
-            image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=1000&auto=format&fit=crop']),
+            image: '/images/variants/apple/deep-blue.png',
+            gallery: JSON.stringify(['/images/variants/apple/deep-blue.png']),
             inStock: true,
             stockCount: 12
           },
@@ -111,8 +111,8 @@ async function main() {
             storageSlug: '1tb',
             price: 174900,
             mrp: 184900,
-            image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=1000&auto=format&fit=crop']),
+            image: '/images/variants/apple/deep-blue.png',
+            gallery: JSON.stringify(['/images/variants/apple/deep-blue.png']),
             inStock: true,
             stockCount: 8
           },
@@ -125,8 +125,8 @@ async function main() {
             storageSlug: '256gb',
             price: 134900,
             mrp: 144900,
-            image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=1000&auto=format&fit=crop']),
+            image: '/images/variants/apple/silver.png',
+            gallery: JSON.stringify(['/images/variants/apple/silver.png']),
             inStock: true,
             stockCount: 20
           },
@@ -138,8 +138,8 @@ async function main() {
             storageSlug: '512gb',
             price: 154900,
             mrp: 164900,
-            image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=1000&auto=format&fit=crop']),
+            image: '/images/variants/apple/silver.png',
+            gallery: JSON.stringify(['/images/variants/apple/silver.png']),
             inStock: true,
             stockCount: 14
           },
@@ -151,8 +151,8 @@ async function main() {
             storageSlug: '1tb',
             price: 174900,
             mrp: 184900,
-            image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=1000&auto=format&fit=crop']),
+            image: '/images/variants/apple/silver.png',
+            gallery: JSON.stringify(['/images/variants/apple/silver.png']),
             inStock: true,
             stockCount: 9
           }
@@ -193,7 +193,6 @@ async function main() {
       }),
       variants: {
         create: [
-          // Titanium Gray (#7B7B7D) — 256GB, 512GB, 1TB
           {
             color: 'Titanium Gray',
             colorHex: '#7B7B7D',
@@ -207,33 +206,6 @@ async function main() {
             inStock: true,
             stockCount: 15
           },
-          {
-            color: 'Titanium Gray',
-            colorHex: '#7B7B7D',
-            colorSlug: 'titanium-gray',
-            storage: '512GB',
-            storageSlug: '512gb',
-            price: 139999,
-            mrp: 149999,
-            image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 12
-          },
-          {
-            color: 'Titanium Gray',
-            colorHex: '#7B7B7D',
-            colorSlug: 'titanium-gray',
-            storage: '1TB',
-            storageSlug: '1tb',
-            price: 159999,
-            mrp: 169999,
-            image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 6
-          },
-          // Titanium Black (#2B2B2C) — 256GB, 512GB, 1TB
           {
             color: 'Titanium Black',
             colorHex: '#2B2B2C',
@@ -246,46 +218,6 @@ async function main() {
             gallery: JSON.stringify(['https://images.unsplash.com/photo-1585060544812-6b45742d762f?q=80&w=1000&auto=format&fit=crop']),
             inStock: true,
             stockCount: 20
-          },
-          {
-            color: 'Titanium Black',
-            colorHex: '#2B2B2C',
-            colorSlug: 'titanium-black',
-            storage: '512GB',
-            storageSlug: '512gb',
-            price: 139999,
-            mrp: 149999,
-            image: 'https://images.unsplash.com/photo-1585060544812-6b45742d762f?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1585060544812-6b45742d762f?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 15
-          },
-          {
-            color: 'Titanium Black',
-            colorHex: '#2B2B2C',
-            colorSlug: 'titanium-black',
-            storage: '1TB',
-            storageSlug: '1tb',
-            price: 159999,
-            mrp: 169999,
-            image: 'https://images.unsplash.com/photo-1585060544812-6b45742d762f?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1585060544812-6b45742d762f?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 8
-          },
-          // Titanium Violet (#4A3F6B) — 256GB, 512GB, 1TB
-          {
-            color: 'Titanium Violet',
-            colorHex: '#4A3F6B',
-            colorSlug: 'titanium-violet',
-            storage: '256GB',
-            storageSlug: '256gb',
-            price: 129999,
-            mrp: 139999,
-            image: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 14
           },
           {
             color: 'Titanium Violet',
@@ -301,20 +233,6 @@ async function main() {
             stockCount: 11
           },
           {
-            color: 'Titanium Violet',
-            colorHex: '#4A3F6B',
-            colorSlug: 'titanium-violet',
-            storage: '1TB',
-            storageSlug: '1tb',
-            price: 159999,
-            mrp: 169999,
-            image: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 5
-          },
-          // Titanium Yellow (#E5C564) — 256GB, 512GB, 1TB
-          {
             color: 'Titanium Yellow',
             colorHex: '#E5C564',
             colorSlug: 'titanium-yellow',
@@ -325,33 +243,7 @@ async function main() {
             image: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?q=80&w=1000&auto=format&fit=crop',
             gallery: JSON.stringify(['https://images.unsplash.com/photo-1565849904461-04a58ad377e0?q=80&w=1000&auto=format&fit=crop']),
             inStock: true,
-            stockCount: 10
-          },
-          {
-            color: 'Titanium Yellow',
-            colorHex: '#E5C564',
-            colorSlug: 'titanium-yellow',
-            storage: '512GB',
-            storageSlug: '512gb',
-            price: 139999,
-            mrp: 149999,
-            image: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1565849904461-04a58ad377e0?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
             stockCount: 8
-          },
-          {
-            color: 'Titanium Yellow',
-            colorHex: '#E5C564',
-            colorSlug: 'titanium-yellow',
-            storage: '1TB',
-            storageSlug: '1tb',
-            price: 159999,
-            mrp: 169999,
-            image: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1565849904461-04a58ad377e0?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 4
           }
         ]
       },
@@ -387,20 +279,6 @@ async function main() {
       }),
       variants: {
         create: [
-          // Obsidian (#1E1F22) — 128GB, 256GB, 512GB, 1TB
-          {
-            color: 'Obsidian',
-            colorHex: '#1E1F22',
-            colorSlug: 'obsidian',
-            storage: '128GB',
-            storageSlug: '128gb',
-            price: 114999,
-            mrp: 124999,
-            image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 22
-          },
           {
             color: 'Obsidian',
             colorHex: '#1E1F22',
@@ -413,46 +291,6 @@ async function main() {
             gallery: JSON.stringify(['https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=1000&auto=format&fit=crop']),
             inStock: true,
             stockCount: 20
-          },
-          {
-            color: 'Obsidian',
-            colorHex: '#1E1F22',
-            colorSlug: 'obsidian',
-            storage: '512GB',
-            storageSlug: '512gb',
-            price: 139999,
-            mrp: 149999,
-            image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 14
-          },
-          {
-            color: 'Obsidian',
-            colorHex: '#1E1F22',
-            colorSlug: 'obsidian',
-            storage: '1TB',
-            storageSlug: '1tb',
-            price: 159999,
-            mrp: 169999,
-            image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 8
-          },
-          // Porcelain (#F0EFEB) — 128GB, 256GB, 512GB, 1TB
-          {
-            color: 'Porcelain',
-            colorHex: '#F0EFEB',
-            colorSlug: 'porcelain',
-            storage: '128GB',
-            storageSlug: '128gb',
-            price: 114999,
-            mrp: 124999,
-            image: 'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 18
           },
           {
             color: 'Porcelain',
@@ -468,46 +306,6 @@ async function main() {
             stockCount: 16
           },
           {
-            color: 'Porcelain',
-            colorHex: '#F0EFEB',
-            colorSlug: 'porcelain',
-            storage: '512GB',
-            storageSlug: '512gb',
-            price: 139999,
-            mrp: 149999,
-            image: 'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 10
-          },
-          {
-            color: 'Porcelain',
-            colorHex: '#F0EFEB',
-            colorSlug: 'porcelain',
-            storage: '1TB',
-            storageSlug: '1tb',
-            price: 159999,
-            mrp: 169999,
-            image: 'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 6
-          },
-          // Hazel (#5E625B) — 128GB, 256GB, 512GB, 1TB
-          {
-            color: 'Hazel',
-            colorHex: '#5E625B',
-            colorSlug: 'hazel',
-            storage: '256GB',
-            storageSlug: '256gb',
-            price: 124999,
-            mrp: 134999,
-            image: 'https://images.unsplash.com/photo-1567581935884-3349723552ca?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1567581935884-3349723552ca?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 12
-          },
-          {
             color: 'Hazel',
             colorHex: '#5E625B',
             colorSlug: 'hazel',
@@ -520,7 +318,6 @@ async function main() {
             inStock: true,
             stockCount: 8
           },
-          // Rose Quartz (#E8C5C8) — 128GB, 256GB, 512GB, 1TB
           {
             color: 'Rose Quartz',
             colorHex: '#E8C5C8',
@@ -533,19 +330,6 @@ async function main() {
             gallery: JSON.stringify(['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop']),
             inStock: true,
             stockCount: 10
-          },
-          {
-            color: 'Rose Quartz',
-            colorHex: '#E8C5C8',
-            colorSlug: 'rose-quartz',
-            storage: '512GB',
-            storageSlug: '512gb',
-            price: 139999,
-            mrp: 149999,
-            image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 6
           }
         ]
       },
@@ -581,7 +365,6 @@ async function main() {
       }),
       variants: {
         create: [
-          // Flowy Emerald (#1C4D43) — 256GB, 512GB
           {
             color: 'Flowy Emerald',
             colorHex: '#1C4D43',
@@ -596,33 +379,6 @@ async function main() {
             stockCount: 30
           },
           {
-            color: 'Flowy Emerald',
-            colorHex: '#1C4D43',
-            colorSlug: 'flowy-emerald',
-            storage: '512GB',
-            storageSlug: '512gb',
-            price: 69999,
-            mrp: 74999,
-            image: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1565849904461-04a58ad377e0?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 20
-          },
-          // Silky Black (#1C1C1E) — 256GB, 512GB
-          {
-            color: 'Silky Black',
-            colorHex: '#1C1C1E',
-            colorSlug: 'silky-black',
-            storage: '256GB',
-            storageSlug: '256gb',
-            price: 64999,
-            mrp: 69999,
-            image: 'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1546054454-aa26e2b734c7?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 25
-          },
-          {
             color: 'Silky Black',
             colorHex: '#1C1C1E',
             colorSlug: 'silky-black',
@@ -635,7 +391,6 @@ async function main() {
             inStock: true,
             stockCount: 14
           },
-          // Glacial White (#F4F5F7) — 256GB, 512GB
           {
             color: 'Glacial White',
             colorHex: '#F4F5F7',
@@ -648,19 +403,6 @@ async function main() {
             gallery: JSON.stringify(['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=1000&auto=format&fit=crop']),
             inStock: true,
             stockCount: 18
-          },
-          {
-            color: 'Glacial White',
-            colorHex: '#F4F5F7',
-            colorSlug: 'glacial-white',
-            storage: '512GB',
-            storageSlug: '512gb',
-            price: 69999,
-            mrp: 74999,
-            image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=1000&auto=format&fit=crop',
-            gallery: JSON.stringify(['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=1000&auto=format&fit=crop']),
-            inStock: true,
-            stockCount: 12
           }
         ]
       },
@@ -696,7 +438,6 @@ async function main() {
       }),
       variants: {
         create: [
-          // Black (Vegan Leather) (#121212) — 512GB
           {
             color: 'Black (Vegan Leather)',
             colorHex: '#121212',
@@ -710,7 +451,6 @@ async function main() {
             inStock: true,
             stockCount: 12
           },
-          // White (Vegan Leather) (#FDFDFD) — 512GB
           {
             color: 'White (Vegan Leather)',
             colorHex: '#FDFDFD',
@@ -724,7 +464,6 @@ async function main() {
             inStock: true,
             stockCount: 10
           },
-          // Titanium Gray (#6B6B6D) — 512GB
           {
             color: 'Titanium Gray',
             colorHex: '#6B6B6D',
@@ -771,7 +510,6 @@ async function main() {
       }),
       variants: {
         create: [
-          // Asteroid Black (#232428) — 512GB
           {
             color: 'Asteroid Black',
             colorHex: '#232428',
@@ -785,7 +523,6 @@ async function main() {
             inStock: true,
             stockCount: 15
           },
-          // Sunset Orange (#E85A2A) — 512GB
           {
             color: 'Sunset Orange',
             colorHex: '#E85A2A',
@@ -799,7 +536,6 @@ async function main() {
             inStock: true,
             stockCount: 10
           },
-          // Moonlight White (#F5F5F7) — 512GB
           {
             color: 'Moonlight White',
             colorHex: '#F5F5F7',
@@ -840,7 +576,7 @@ async function main() {
     }
   });
 
-  console.log('Seeding official smartphone variants completed successfully!');
+  console.log('Seeding completed successfully!');
 }
 
 main()
