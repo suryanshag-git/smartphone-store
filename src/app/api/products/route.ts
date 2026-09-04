@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -12,7 +15,6 @@ export async function GET(request: NextRequest) {
     const sort = searchParams.get('sort') || 'featured';
 
     if (isSupabaseConfigured()) {
-      // Query Supabase directly
       let query = supabase.from('Product').select('*, variants:ProductVariant(*), emiPlans:EMIPlan(*)');
 
       if (search) {
@@ -35,7 +37,6 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Fallback DB query
     const whereClause: any = {};
 
     if (search) {
