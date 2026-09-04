@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, use } from 'react';
-import Link from 'next/left';
-import LinkComponent from 'next/link';
+import Link from 'next/link';
 import { ShieldCheck, CheckCircle, ArrowLeft, Sparkles, RefreshCw } from 'lucide-react';
 import { Order } from '@/types';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
@@ -74,9 +73,9 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
       <div className="max-w-3xl mx-auto px-4 py-16 text-center space-y-4 text-[var(--foreground)]">
         <h2 className="font-serif text-2xl font-bold">Order Not Found</h2>
         <p className="text-xs text-[var(--muted)]">No order matches tracking number #{orderId}.</p>
-        <LinkComponent href="/products" className="inline-block py-2 px-4 bg-[var(--foreground)] text-[var(--card)] font-bold text-xs rounded-xl">
+        <Link href="/products" className="inline-block py-2 px-4 bg-[var(--foreground)] text-[var(--card)] font-bold text-xs rounded-xl">
           Back to Store
-        </LinkComponent>
+        </Link>
       </div>
     );
   }
@@ -92,10 +91,10 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 text-[var(--foreground)]">
-      <LinkComponent href="/orders" className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
+      <Link href="/orders" className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Orders</span>
-      </LinkComponent>
+      </Link>
 
       {/* Header Banner */}
       <div className="pearl-card p-6 sm:p-8 rounded-3xl space-y-4">
