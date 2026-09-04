@@ -124,6 +124,60 @@ erDiagram
 
 ---
 
+## ⚡ Supabase Setup & Database Management Guide
+
+Slate supports a **Dual Database Architecture**:
+1. **Local Development (Default)**: Embedded SQLite database (`prisma/dev.db`) — works 100% offline out-of-the-box.
+2. **Production Cloud Database**: Supabase PostgreSQL with WebSockets Realtime replication.
+
+---
+
+### Step 1: Create a Cloud Supabase Project
+1. Log in to [Supabase Dashboard](https://supabase.com/dashboard) and click **New Project**.
+2. Set your **Project Name** (e.g. `slate-smartphone-store`), **Database Password**, and region.
+3. Go to **Project Settings** -> **API**:
+   - Copy `Project URL` -> Set as `NEXT_PUBLIC_SUPABASE_URL` in `.env.local`.
+   - Copy `anon public key` -> Set as `NEXT_PUBLIC_SUPABASE_ANON_KEY` in `.env.local`.
+4. Go to **Project Settings** -> **Database**:
+   - Copy the Connection String (URI port `6543` pooler or `5432` direct) -> Set as `DATABASE_URL` in `.env.local`.
+
+---
+
+### Step 2: Push Schema & Seed Cloud Database
+To push tables and seed product datasets to your cloud Supabase database:
+
+```bash
+# 1. Update provider in prisma/schema.prisma to 'postgresql' (if deploying Postgres)
+# provider = "postgresql"
+
+# 2. Push tables directly to Supabase Postgres
+npx prisma db push
+
+# 3. Seed product variants, EMI plans, and portfolios
+npx prisma db seed
+```
+
+---
+
+### Step 3: Enable Supabase Realtime for WebSockets Tracking
+To enable live WebSocket status updates on `/orders/[id]`:
+1. Open **Supabase Dashboard** -> **Table Editor**.
+2. Select the `Order` table.
+3. Click **Realtime** (or **Database** -> **Replication**).
+4. Enable **Insert** and **Update** events for the `Order` table.
+
+---
+
+### Step 4: Manage Database Records via Prisma Studio
+You can inspect, add, edit, or delete database records visually via Prisma Studio:
+
+```bash
+npx prisma studio
+```
+This launches a browser GUI at **`http://localhost:5555`**.
+
+---
+
 ## 🔌 API Endpoints Summary
 
 | Endpoint | Method | Description |
