@@ -31,16 +31,16 @@ export default async function HomePage() {
       <section className="pt-16 pb-12 border-b border-[var(--border)] bg-[var(--card)]">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-5">
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--muted)]">
-            Slate Smartphone Financing
+            ZERO BREAK ON RETURNS • INSTANT APPROVAL
           </span>
 
           <h1 className="font-serif text-4xl sm:text-6xl font-black tracking-tight text-[var(--foreground)] leading-tight">
-            Flagship phones.{' '}
-            <span className="italic font-normal">Financed by your wealth.</span>
+            Why break your investments for a new phone?{' '}
+            <span className="italic font-normal">Keep your investments growing.</span>
           </h1>
 
           <p className="text-sm sm:text-base text-[var(--muted)] max-w-xl mx-auto font-normal leading-relaxed">
-            Pledge your mutual funds for instant monthly financing. Your investments stay 100% untouched and earning market returns.
+            Get 0% interest EMI backed by your mutual funds. Your investments stay 100% untouched and earning market returns.
           </p>
 
           <div className="pt-2">
